@@ -1,14 +1,18 @@
 import mysql.connector
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 class Books():
 
     def __init__(self):
+        
         try:
             self.conn = mysql.connector.connect(
-                host = "localhost",
-                username = "root",
-                password = "1234",
-                database = "library"
+                host = os.getenv("DBHOST"),
+                username =os.getenv("DBUSERNAME") ,
+                password = os.getenv("DBPASSWORD"),
+                database = os.getenv("DB")
             )
             self.cur = self.conn.cursor(dictionary = True)
             print ("connected successfluuuuu")
